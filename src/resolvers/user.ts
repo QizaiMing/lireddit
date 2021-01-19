@@ -181,11 +181,9 @@ export class UserResolver {
 
   @Mutation(() => UserResponse)
   async login(
-    @Arg('usernameOrEmail')
-    usernameOrEmail: string,
+    @Arg('usernameOrEmail') usernameOrEmail: string,
     @Arg('password') password: string,
-    @Ctx()
-    { req }: MyContext
+    @Ctx() { req }: MyContext
   ): Promise<UserResponse> {
     const user = await User.findOne(
       usernameOrEmail.includes('@')
@@ -197,7 +195,7 @@ export class UserResolver {
         errors: [
           {
             field: 'usernameOrEmail',
-            message: 'that username does not exist'
+            message: 'that username or email does not exist'
           }
         ]
       }
@@ -217,7 +215,6 @@ export class UserResolver {
     }
 
     req.session.userId = user.id
-
     return {
       user
     }

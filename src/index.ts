@@ -14,13 +14,14 @@ import cors from 'cors'
 import { createConnection } from 'typeorm'
 import { Post } from './entities/Post'
 import { User } from './entities/User'
+import { secrets } from './utils/secrets'
 
 const main = async () => {
   const conn = await createConnection({
     type: 'postgres',
-    database: 'lireddit2',
-    username: 'postgres',
-    password: '9209949',
+    database: secrets.dbName,
+    username: secrets.dbUser,
+    password: secrets.dbPassword,
     logging: true,
     synchronize: true,
     entities: [Post, User]

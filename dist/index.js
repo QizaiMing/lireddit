@@ -27,12 +27,13 @@ const cors_1 = __importDefault(require("cors"));
 const typeorm_1 = require("typeorm");
 const Post_1 = require("./entities/Post");
 const User_1 = require("./entities/User");
+const secrets_1 = require("./utils/secrets");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const conn = yield typeorm_1.createConnection({
         type: 'postgres',
-        database: 'lireddit2',
-        username: 'postgres',
-        password: '9209949',
+        database: secrets_1.secrets.dbName,
+        username: secrets_1.secrets.dbUser,
+        password: secrets_1.secrets.dbPassword,
         logging: true,
         synchronize: true,
         entities: [Post_1.Post, User_1.User]
