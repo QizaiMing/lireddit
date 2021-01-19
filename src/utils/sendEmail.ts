@@ -1,5 +1,6 @@
 'use strict'
 import nodemailer from 'nodemailer'
+import { secrets } from './secrets'
 
 // async..await is not allowed in global scope, must use a wrapper
 export async function sendEmail(to: string, html: string) {
@@ -14,8 +15,8 @@ export async function sendEmail(to: string, html: string) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'wks2fhjy5xdpblhp@ethereal.email', // generated ethereal user
-      pass: 'y6jdH3s9rJqcRwH5X5' // generated ethereal password
+      user: secrets.user, // generated ethereal user
+      pass: secrets.password // generated ethereal password
     }
   })
 
