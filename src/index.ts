@@ -29,7 +29,8 @@ const main = async () => {
     migrations: [path.join(__dirname, './migrations/*')],
     entities: [Post, User, Updoot]
   })
-  await conn.runMigrations()
+  // await conn.runMigrations()
+  console.log(conn)
 
   const app = express()
 
